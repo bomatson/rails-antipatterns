@@ -1,0 +1,10 @@
+%h2= @album.title
+%p
+  By:
+  = @album.artist
+
+%ul
+  - @album.songs.each do |song|
+    %li= link_to song.title, song
+
+= link_to 'Add song', new_album_song_url(@album)

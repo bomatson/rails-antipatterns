@@ -1,0 +1,11 @@
+= form_for([@album, @song]) do |f|
+  / ...
+  - if @album
+    .field
+      = f.label :album
+      = f.select(:album_id,
+                 options_from_collection_for_select(Album.all,
+                                                    :id,
+                                                    :title,
+                                                    @song.album_id),
+                 { include_blank: true })

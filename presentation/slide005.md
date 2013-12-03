@@ -1,28 +1,25 @@
-         _       __               __                 ____  ______  __
-        | |     / /___ ___  __   / /_____  ____     / __ \/ __ \ \/ /
-        | | /| / / __ `/ / / /  / __/ __ \/ __ \   / / / / /_/ /\  /
-        | |/ |/ / /_/ / /_/ /  / /_/ /_/ / /_/ /  / /_/ / _, _/ / /
-        |__/|__/\__,_/\__, /   \__/\____/\____/  /_____/_/ |_| /_/
-                     /____/
-        The DRY Principle is not about having the least lines of code
+            __  ____ _____                __  ___          __     __   __  ___                __
+           /  |/  (_) / (_)___  ____     /  |/  /___  ____/ /__  / /  /  |/  /___ ___________/ /_
+          / /|_/ / / / / / __ \/ __ \   / /|_/ / __ \/ __  / _ \/ /  / /|_/ / __ `/ ___/ ___/ __ \
+         / /  / / / / / / /_/ / / / /  / /  / / /_/ / /_/ /  __/ /  / /  / / /_/ / /  / /__/ / / /
+        /_/  /_/_/_/_/_/\____/_/ /_/  /_/  /_/\____/\__,_/\___/_/  /_/  /_/\__,_/_/   \___/_/ /_/
 
-        DRY is about reducing:
+        Overusing ActiveRecord models adds unnecessary overhead
 
-        1. the possibility of developer error
-        2. the effort required to make business logic changes in the application+------------------------------+
-        |::::::=::=:===:===============|
-        |:::::::==============o=oo===o=|
-        |=:::==:=======ooooooooooo==o==|
-        |:::::==========::====o========|
-        |::::::=:~~:===:~::::::::=::=::|
-        |.~~~::~.~~~:~:~:::::::::::::::|
-        |..~..~~~~~~~~~~~~~:::::~~~~~~~|
-        |~.~~~.~~~~:~:~::~:::~=:=:::==:|
-        | .. ...~~.~~~~~~~~~:~~~~:~~~~~|
-        |    ..........~.~.~..~~...~..~|
-        |                 .. . ........|
-        +------------------------------+
+        Example: I have many models which needs statuses, why not add a Status model?
 
+        class Purchase < ActiveRecord::Base
+          belongs_to :status
+
+          validates :status_id, presence: true
+        end
+
+        class Status < ActiveRecord::Base
+          has_many :purchases
+        end
+
+
+        You see this and think, "I'm clever, I can reduce this complexity and get rid of the model. DRY the sucker right up"
 
 
 

@@ -6,29 +6,10 @@
                      /____/
         The DRY Principle is not about having the least lines of code
 
-        This example is a Purchase model which can have many statuses:
+        DRY is about reducing:
 
-        class Purchase < ActiveRecord::Base
-          STATUSES = %w(in_progress submitted approved shipped received)
-
-          validates_presence_of :status
-          validates_inclusion_of :status, in: STATUSES
-
-          class << self
-            STATUSES.each do |status_name|
-              define_method "all_#{status_name}" do
-                where(status: status_name)
-              end
-            end
-          end
-
-          STATUSES.each do |status_name|
-            define_method "#{status_name}?" do
-              status == status_name
-            end
-          end
-        end
-
+        1. the possibility of developer error
+        2. the effort required to make business logic changes in the application
 
 
 
