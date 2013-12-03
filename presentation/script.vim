@@ -13,6 +13,12 @@ b 1
 
 b 2
 
+7,10SyntaxInclude ruby
+
+
+
+b 3
+
 
 
 b 1
