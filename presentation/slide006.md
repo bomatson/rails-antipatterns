@@ -1,19 +1,33 @@
-            __  ____ _____                __  ___          __     __   __  ___                __
-           /  |/  (_) / (_)___  ____     /  |/  /___  ____/ /__  / /  /  |/  /___ ___________/ /_
-          / /|_/ / / / / / __ \/ __ \   / /|_/ / __ \/ __  / _ \/ /  / /|_/ / __ `/ ___/ ___/ __ \
-         / /  / / / / / / /_/ / / / /  / /  / / /_/ / /_/ /  __/ /  / /  / / /_/ / /  / /__/ / / /
-        /_/  /_/_/_/_/_/\____/_/ /_/  /_/  /_/\____/\__,_/\___/_/  /_/  /_/\__,_/_/   \___/_/ /_/
+         _       __               __                 ____  ______  __
+        | |     / /___ ___  __   / /_____  ____     / __ \/ __ \ \/ /
+        | | /| / / __ `/ / / /  / __/ __ \/ __ \   / / / / /_/ /\  /
+        | |/ |/ / /_/ / /_/ /  / /_/ /_/ / /_/ /  / /_/ / _, _/ / /
+        |__/|__/\__,_/\__, /   \__/\____/\____/  /_____/_/ |_| /_/
+                     /____/
+        The DRY Principle is not about having the least lines of code
 
-        p 74
+        This example is a Purchase model which can have many statuses:
 
-            __  ___                  ___ __  __    _         ______            __             ____
-           /  |/  /___  ____  ____  / (_) /_/ /_  (_)____   / ____/___  ____  / /__________  / / /__  __________
-          / /|_/ / __ \/ __ \/ __ \/ / / __/ __ \/ / ___/  / /   / __ \/ __ \/ __/ ___/ __ \/ / / _ \/ ___/ ___/
-         / /  / / /_/ / / / / /_/ / / / /_/ / / / / /__   / /___/ /_/ / / / / /_/ /  / /_/ / / /  __/ /  (__  )
-        /_/  /_/\____/_/ /_/\____/_/_/\__/_/ /_/_/\___/   \____/\____/_/ /_/\__/_/   \____/_/_/\___/_/  /____/
+        class Purchase < ActiveRecord::Base
+          STATUSES = %w(in_progress submitted approved shipped received)
 
-        p 161
+          validates_presence_of :status
+          validates_inclusion_of :status, in: STATUSES
 
+          class << self
+            STATUSES.each do |status_name|
+              define_method "all_#{status_name}" do
+                where(status: status_name)
+              end
+            end
+          end
+
+          STATUSES.each do |status_name|
+            define_method "#{status_name}?" do
+              status == status_name
+            end
+          end
+        end
 
 
 

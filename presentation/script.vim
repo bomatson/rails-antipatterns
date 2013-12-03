@@ -31,6 +31,12 @@ b 5
 
 b 6
 
+11,31SyntaxInclude ruby
+
+
+
+b 7
+
 
 
 b 1

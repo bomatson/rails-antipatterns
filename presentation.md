@@ -93,8 +93,27 @@ This example is a Purchase model which can have many statuses:
 
 ````ruby
 class Purchase < ActiveRecord::Base
+  STATUSES = %w(in_progress submitted approved shipped received)
 
+  validates_presence_of :status
+  validates_inclusion_of :status, in: STATUSES
+
+  class << self
+    STATUSES.each do |status_name|
+      define_method "all_#{status_name}" do
+        where(status: status_name)
+      end
+    end
+  end
+
+  STATUSES.each do |status_name|
+    define_method "#{status_name}?" do
+      status == status_name
+    end
+  end
 end
+````
+
 
 # Million Model March
 p 74
