@@ -14,10 +14,6 @@ b 1
 b 2
 
 
-call matchadd("Comment", "- Unimportant bullet\\(\\_.*slide 2\\)\\@=")
-
-call matchadd("Comment", "- Really unimportant bullet\\(\\_.*slide 2\\)\\@=")
-
 
 b 3
 
@@ -25,11 +21,15 @@ b 3
 
 b 4
 
-9,12SyntaxInclude ruby
+9,51SyntaxInclude ruby
 
 
 
 b 5
+
+
+
+b 6
 
 
 
