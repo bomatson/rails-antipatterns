@@ -10,9 +10,9 @@
 
          Anyone can propose another solution
 
-         The "best" solution will get a gold star
+         Passing solutions will get a bow
 
-         Most gold stars wins
+         Most bows win!
 
         +------------------------------+
         |oooooooooooooo~~oooooooooooooo|

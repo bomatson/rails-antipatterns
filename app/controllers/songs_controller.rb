@@ -1,6 +1,4 @@
 class SongsController < ApplicationController
-  before_filter :grab_album_from_album_id
-
   def index
     @songs = songs.all
   end
@@ -50,7 +48,8 @@ class SongsController < ApplicationController
     @album ? @album.songs : Song
   end
 
-  def grab_album_from_album_id
-    @album = Album.find(params[:album_id]) if params[:album_id]
+  def album
+    @album ||= Album.find(params[:album_id]) if params[:album_id]
   end
+  helper_method :album
 end
