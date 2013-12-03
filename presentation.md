@@ -81,6 +81,13 @@ end
 ````
 
 
+# Modern Solution
+
+For conversion, use ActiveSupport::Serializers w/out a controller to get the same methods (to_json, etc)
+
+Also, think about if this model needs all of this responsibility
+
+
 # Million Model March
 
 Overusing ActiveRecord models adds unnecessary overhead
@@ -142,6 +149,14 @@ class Purchase < ActiveRecord::Base
   end
 end
 ````
+
+
+# Modern Solutions
+
+Use StateMachine gem to handle statuses, states (guaranteed documentation and less developer error in the future)
+
+Keep it out of app if used in many models. Build into lib dir as extension of ActiveRecord
+
 
 
 # A Lost Child Controller
@@ -217,6 +232,13 @@ Antipatterns::Application.routes.draw do
   resources :songs
 end
 ````
+
+
+Modern Solutions
+
+Rename independent songs as Singles and have them in a SinglesController
+
+If you need to stick with this domain, use helper methods in the controller that can be used in the view
 
 
 fin.
