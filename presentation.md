@@ -7,6 +7,19 @@
 by Little Bobby Tables
 
 
+# The Format
+
+{~- Unimportant bullet~}
+- Important bullet
+{~- Really unimportant bullet~}
+
+
+## 3 Rails Antipatterns
+## I will propose a solution
+
+## You will propose a better one
+
+
 # Fat Models
 
 Growing a Model beyond its needs introduces complexity
